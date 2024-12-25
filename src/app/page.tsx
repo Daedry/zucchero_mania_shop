@@ -9,6 +9,8 @@ import { Suspense } from "react";
 import { getWixClient } from "@/lib/wix-client.base";
 import Product from "@/components/Product";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getCollectionsBySlug } from "@/wix-api/collection";
+import { queryProducts } from "@/wix-api/product";
 
 export default function Home() {
   return (
@@ -46,17 +48,16 @@ export default function Home() {
 async function FeaturedProducts() {
   await delay(1000);
   const wixClient = getWixClient();
-  const {collection} = await wixClient.collections.getCollectionBySlug("prodotti-in-evidenza");
+  const collection = await getCollectionsBySlug('prodotti-in-evidenza');
 
   if(!collection?._id){
     return null;
   }
 
-  const featuredProducts = await wixClient.products
-  .queryProducts()
-  .hasSome("collectionIds", [collection._id])
-  .descending("lastUpdated")
-  .find();
+  const featuredProducts = await queryProducts({
+    collectionIds: collection._id,
+    sort: "last_updated"
+  });
 
   if(!featuredProducts.items.length){
     return null;
