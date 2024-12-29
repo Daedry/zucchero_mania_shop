@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
 import Navbar from "@/Navbar";
 import Footer from "./Footer";
 
@@ -27,9 +28,16 @@ export default function RootLayout({
       <body
         className={lora.className}
       >
-        <Navbar/>
-        {children}
-        <Footer/>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem={true}
+          disableTransitionOnChange
+        >
+          <Navbar/>
+          <div className="min-h-[50vh]">{children}</div>
+          <Footer/>
+        </ThemeProvider>
       </body>
     </html>
   );

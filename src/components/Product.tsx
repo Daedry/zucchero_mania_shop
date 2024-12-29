@@ -20,7 +20,7 @@ export default function Product({product}: ProductProps) {
         : null;
 
     return (
-        <Link href={`/product/${product.slug}`}
+        <Link href={`/products/${product.slug}`}
             className="border h-full bg-card"
         >
             <div className="relative overflow-hidden">

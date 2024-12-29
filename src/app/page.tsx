@@ -6,15 +6,14 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { delay } from "@/lib/utils";
 import { Suspense } from "react";
-import { getWixClient } from "@/lib/wix-client.base";
 import Product from "@/components/Product";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCollectionsBySlug } from "@/wix-api/collection";
-import { queryProducts } from "@/wix-api/product";
+import { queryProducts } from "@/wix-api/products";
 
 export default function Home() {
   return (
-    <main className="max-w-7x1 mx.auto px-5 py-10">
+    <main className="max-w-7xl mx-auto px-5 py-10">
       <div className="flex items-center bg-secondary md:h96">
         <div className="space-y-7 p-10 text-center md:w-1/2">
           <h1 className="text-3xl md:text4xl font-bold">
@@ -46,8 +45,7 @@ export default function Home() {
 }
 
 async function FeaturedProducts() {
-  await delay(1000);
-  const wixClient = getWixClient();
+  await delay(500);
   const collection = await getCollectionsBySlug('prodotti-in-evidenza');
 
   if(!collection?._id){
