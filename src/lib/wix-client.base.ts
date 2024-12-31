@@ -1,4 +1,4 @@
-import { createClient, OAuthStrategy } from "@wix/sdk";
+import { createClient, OAuthStrategy, Token, Tokens } from "@wix/sdk";
 import { env } from "@/env";
 import {
     backInStockNotifications,
@@ -10,9 +10,10 @@ import {
 import { files } from "@wix/media";
 import { members } from "@wix/members";
 import { redirects } from "@wix/redirects";
+import { reviews } from "@wix/reviews";
 import { collections, products } from "@wix/stores";
 
-export function getWixClient() {
+export function getWixClient(tokens: Tokens | undefined){
     return createClient({
         modules: {
             products,
@@ -23,11 +24,15 @@ export function getWixClient() {
             orders,
             recommendations,
             backInStockNotifications,
+            reviews,
             members,
             files,
         },
         auth: OAuthStrategy({
-            clientId: env.NEXT_PUBLIC_WIX_CIENT_ID,
+            clientId: env.NEXT_PUBLIC_WIX_CLIENT_ID,
+            tokens,
         }),
     })
 }
+
+export type WixClient = ReturnType<typeof getWixClient>;

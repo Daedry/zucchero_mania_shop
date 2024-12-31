@@ -10,6 +10,7 @@ import Product from "@/components/Product";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCollectionsBySlug } from "@/wix-api/collection";
 import { queryProducts } from "@/wix-api/products";
+import { getWixServerClient } from "@/lib/wix-client.server";
 
 export default function Home() {
   return (
@@ -46,13 +47,16 @@ export default function Home() {
 
 async function FeaturedProducts() {
   await delay(500);
-  const collection = await getCollectionsBySlug('prodotti-in-evidenza');
+
+  const wixClient = getWixServerClient();
+
+  const collection = await getCollectionsBySlug(wixClient, 'prodotti-in-evidenza');
 
   if(!collection?._id){
     return null;
   }
 
-  const featuredProducts = await queryProducts({
+  const featuredProducts = await queryProducts( wixClient, {
     collectionIds: collection._id,
     sort: "last_updated"
   });
