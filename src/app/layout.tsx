@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/Navbar";
 import Footer from "./Footer";
+import ReactQueryProvider from "./ReactQueryProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -28,16 +30,19 @@ export default function RootLayout({
       <body
         className={lora.className}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem={true}
-          disableTransitionOnChange
-        >
-          <Navbar/>
-          <div className="min-h-[50vh]">{children}</div>
-          <Footer/>
-        </ThemeProvider>
+        <ReactQueryProvider>
+          {/* <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem={true}
+            disableTransitionOnChange
+          > */}
+            <Navbar/>
+            <div className="min-h-[50vh]">{children}</div>
+            <Footer/>
+          {/* </ThemeProvider> */}
+        </ReactQueryProvider>
+        <Toaster/>
       </body>
     </html>
   );

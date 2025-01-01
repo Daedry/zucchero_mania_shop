@@ -97,6 +97,8 @@ export default function ProductDetails({product}: ProductDetailsProps) {
                         product={product} 
                         selectedOptions={selectedOptions} 
                         quantity={quantity} 
+                        disabled={availableQuantityExceded || quantity < 1}
+                        className="w-full"
                     />
                 ) : (
                     "Out of stock"
