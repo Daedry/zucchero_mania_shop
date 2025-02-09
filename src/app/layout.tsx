@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Lora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import Navbar from "@/Navbar";
+import Navbar from "@/app/Navbar";
 import Footer from "./Footer";
 import ReactQueryProvider from "./ReactQueryProvider";
 import { Toaster } from "@/components/ui/toaster";
@@ -27,20 +27,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="icon" href="/favicon.ico" />
       <body
         className={lora.className}
       >
         <ReactQueryProvider>
-          {/* <ThemeProvider
+          <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem={true}
             disableTransitionOnChange
-          > */}
+          >
             <Navbar/>
             <div className="min-h-[50vh]">{children}</div>
             <Footer/>
-          {/* </ThemeProvider> */}
+          </ThemeProvider>
         </ReactQueryProvider>
         <Toaster/>
       </body>

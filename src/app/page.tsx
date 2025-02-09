@@ -8,7 +8,7 @@ import { delay } from "@/lib/utils";
 import { Suspense } from "react";
 import Product from "@/components/Product";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getCollectionsBySlug } from "@/wix-api/collection";
+import { getCollectionBySlug } from "@/wix-api/collections";
 import { queryProducts } from "@/wix-api/products";
 import { getWixServerClient } from "@/lib/wix-client.server";
 
@@ -18,10 +18,10 @@ export default function Home() {
       <div className="flex items-center bg-secondary md:h96">
         <div className="space-y-7 p-10 text-center md:w-1/2">
           <h1 className="text-3xl md:text4xl font-bold">
-            Zucchero Mania Shop
+            Zucchero Mania
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          Dai forma alla tua passione per il cake design con gli strumenti giusti. Crea, decora e sorprendi con Zucchero Mania!
           </p>
           <Button asChild className="mt-10">
             <Link href="/shop">
@@ -50,7 +50,7 @@ async function FeaturedProducts() {
 
   const wixClient = getWixServerClient();
 
-  const collection = await getCollectionsBySlug(wixClient, 'prodotti-in-evidenza');
+  const collection = await getCollectionBySlug(wixClient, 'prodotti-in-evidenza');
 
   if(!collection?._id){
     return null;
@@ -67,8 +67,8 @@ async function FeaturedProducts() {
 
   return (
     <div className="space-y-5">
-      <h2 className="text-2xl font-bold">Featured products</h2>
-      <div className="flex flex-col sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <h2 className="text-2xl font-bold mt-10">Prodotti in Evidenza</h2>
+      <div className="flex flex-col sm:grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
         {featuredProducts.items.map((product) => (
           <Product key={product._id} product={product}/>
         ))}

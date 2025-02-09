@@ -21,14 +21,14 @@ export default function Product({product}: ProductProps) {
 
     return (
         <Link href={`/products/${product.slug}`}
-            className="border h-full bg-card"
+            className="border h-full bg-card transition-shadow duration-200 hover:shadow-md"
         >
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden ">
                 <WixImage 
                     mediaIdentifier={mainImage?.url} 
                     alt={mainImage?.altText}
-                    width={700}
-                    height={700}
+                    width={600}
+                    height={600}
                     className="transition-transform duration-300 hover:scale-105"
                 />
                 <div className="absolute bottom-3 right-3 flex flex-wrap items-center gap-2">
@@ -40,11 +40,11 @@ export default function Product({product}: ProductProps) {
                 </div>
             </div>
             <div className="space-7-3 p-3">
-                <h3 className="text-lg font-bold">{product.name}</h3>
-                <div 
+                <div className="text-base font-semibold">{product.name}</div>
+                {/*<div 
                     className="line-clamp-5"
                     dangerouslySetInnerHTML={{__html: product.description || ""}}
-                />
+                />*/}
             </div>
         </Link>
     )

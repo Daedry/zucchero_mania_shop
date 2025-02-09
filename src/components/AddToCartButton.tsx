@@ -1,7 +1,7 @@
 import { products } from "@wix/stores";
 import { Button, ButtonProps } from "./ui/button";
 import { addToCart } from "@/wix-api/cart";
-import { wixBrowserWixClient } from "@/lib/wix-client.browser";
+import { wixBrowserClient } from "@/lib/wix-client.browser";
 import LoadingButton from "./LoadingButton";
 import { useAddItemToCart } from "@/hooks/cart";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ interface AddToCartButtonProps extends ButtonProps {
     product: products.Product;
     selectedOptions: Record<string, string>;
     quantity: number;
+    isDisabled?: boolean;
 }   
 
 export default function AddToCartButton({
@@ -18,6 +19,7 @@ export default function AddToCartButton({
     selectedOptions, 
     quantity,
     className,
+    isDisabled,
     ...props
 }: AddToCartButtonProps) {
 
@@ -37,7 +39,7 @@ export default function AddToCartButton({
             {...props}
         >
             <ShoppingCartIcon />
-            Add to cart
+            {isDisabled  ? "Non disponibile" : `Aggiungi al carrello`}
         </LoadingButton>
     );
 }
