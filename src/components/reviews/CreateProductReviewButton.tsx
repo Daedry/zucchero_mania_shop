@@ -40,7 +40,7 @@ export default function CreateProductReviewButton({
         onClick={() => setShowReviewDialog(true)}
         disabled={!loggedInMember}
       >
-        {loggedInMember ? "Write a review" : "Log in to write a review"}
+        {loggedInMember ? "Scrivi una recensione" : "Accedi per scrivere una recensione"}
       </Button>
       <CreateProductReviewDialog
         product={product}
@@ -76,14 +76,13 @@ function ReviewSubmittedDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Thank you for your review!</DialogTitle>
+          <DialogTitle>Grazie per la tua recensione!</DialogTitle>
           <DialogDescription>
-            Your review has been submitted successfully. It will be visible once
-            it has been approved by our team.
+            La tua recensione è stata inviata con successo. Sarà visibile una volta approvata dal nostro team.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button onClick={() => onOpenChange(false)}>Close</Button>
+          <Button onClick={() => onOpenChange(false)}>Chiudi</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -103,10 +102,9 @@ function ReviewAlreadyExistsDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Review already exists</DialogTitle>
+          <DialogTitle>Hai già scritto una recensione per questo prodotto</DialogTitle>
           <DialogDescription>
-            You have already written a review for this product. You can only
-            write one review per product.
+            Hai gia scritto una recensione per questo prodotto. Puoi scrivere una recensione per prodotto.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

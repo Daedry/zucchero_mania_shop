@@ -60,7 +60,7 @@ export default function ProductReviews({ product }: ProductReviewsProps) {
         <p className="text-destructive">Error fetching reviews</p>
       )}
       {status === "success" && !reviewItems.length && !hasNextPage && (
-        <p>No reviews yet</p>
+        <p>Non ci sono recensioni per questo prodotto</p>
       )}
       <div className="divide-y">
         {reviewItems.map((review) => (
@@ -127,7 +127,7 @@ function Review({
               height={24}
               className="size-5"
             />
-            <span className="font-bold">Flow Shop Team</span>
+            <span className="font-bold">Zucchero Mania Team</span>
           </div>
           <div className="whitespace-pre-line">{reply.message}</div>
         </div>
@@ -176,5 +176,5 @@ function MediaAttachment({ media }: MediaAttachmentProps) {
     );
   }
 
-  return <span className="text-destructive">Unsupported media type</span>;
+  return <span className="text-destructive">Tipo di media non supportato</span>;
 }
