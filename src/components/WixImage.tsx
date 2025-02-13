@@ -2,6 +2,7 @@
 
 import { ImgHTMLAttributes } from "react"
 import { media as wixMedia } from "@wix/sdk";
+import Image from "next/image";
 
 type WixImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 
     "src" | "width" | "height" | "alt"
@@ -37,5 +38,5 @@ export default function WixImage({
             )
             : wixMedia.getImageUrl(mediaIdentifier).url
         : placeholder;
-    return <img src={imageUrl} alt={alt || ""} {...props} />
+    return <Image src={imageUrl} alt={alt || ""} {...props} />
 }
