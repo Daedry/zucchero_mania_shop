@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 import ClearCart from "./ClearCart";
 
 interface PageProps {
-    searchParams: URLSearchParams | Record<string, string | string[] | undefined>;
+    searchParams: Record<string, string | string[]>;
 }
 
 export const metadata: Metadata = {
@@ -16,17 +16,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Page({ searchParams }: PageProps) {
-    // ✅ Convertiamo `searchParams` in un oggetto certo
-    let orderId: string | undefined;
-
-    if (searchParams instanceof URLSearchParams) {
-        // ✅ Se `searchParams` è un URLSearchParams, usiamo `.get()`
-        orderId = searchParams.get("orderId") ?? undefined;
-    } else {
-        // ✅ Se `searchParams` è un oggetto, accediamo direttamente
-        const paramValue = searchParams.orderId;
-        orderId = Array.isArray(paramValue) ? paramValue[0] : paramValue;
-    }
+    // ✅ Assicuriamoci che `orderId` sia sempre una stringa
+    const orderId = Array.isArray(searchParams.orderId)
+        ? searchParams.orderId[0]
+        : searchParams.orderId;
 
     if (!orderId) {
         notFound(); // Se `orderId` è mancante, reindirizza a 404
