@@ -56,10 +56,10 @@ export default function MemberInfoForm({ member }: MemberInfoFormProps) {
             name="loginEmail"
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>Login email</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                         <Input
-                        placeholder="Login email"
+                        placeholder="email"
                         type="email"
                         disabled
                         {...field}
@@ -74,9 +74,9 @@ export default function MemberInfoForm({ member }: MemberInfoFormProps) {
             name="firstName"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>First name</FormLabel>
+                <FormLabel>Nome</FormLabel>
                 <FormControl>
-                    <Input placeholder="First name" {...field} />
+                    <Input placeholder="nome" {...field} />
                 </FormControl>
                 <FormMessage />
                 </FormItem>
@@ -87,16 +87,16 @@ export default function MemberInfoForm({ member }: MemberInfoFormProps) {
             name="lastName"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Last name</FormLabel>
+                <FormLabel>Cognome</FormLabel>
                 <FormControl>
-                    <Input placeholder="Last name" {...field} />
+                    <Input placeholder="cognome" {...field} />
                 </FormControl>
                 <FormMessage />
                 </FormItem>
             )}
             />
             <LoadingButton type="submit" loading={mutation.isPending}>
-            Submit
+                Modifica
             </LoadingButton>
         </form>
         </Form>

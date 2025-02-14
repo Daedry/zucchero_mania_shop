@@ -24,13 +24,13 @@ export default function Orders() {
 
     return (
     <div className="space-y-5">
-        <h2 className="text-2xl font-bold">Your orders</h2>
+        <h2 className="text-2xl font-bold">I tuoi ordini</h2>
         {status === "pending" && <OrdersLoadingSkeleton />}
         {status === "error" && (
-        <p className="text-destructive">Error fetching orders</p>
+        <p className="text-destructive">Errore caricamento ordini</p>
         )}
         {status === "success" && !orders.length && !hasNextPage && (
-        <p>No orders yet</p>
+        <p>Nessun ordine effettuato</p>
         )}
         {orders.map((order) => (
         <Order key={order.number} order={order} />
@@ -40,7 +40,7 @@ export default function Orders() {
             loading={isFetchingNextPage}
             onClick={() => fetchNextPage()}
         >
-            Load more orders
+            Carica altri ordini
         </LoadingButton>
         )}
     </div>

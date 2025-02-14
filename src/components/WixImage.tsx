@@ -24,7 +24,7 @@ type WixImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>,
 
 export default function WixImage({
     mediaIdentifier,
-    placeholder = "placeholder.png",
+    placeholder = "/placeholder.png",
     alt,
     ...props
 }: WixImageProps) {

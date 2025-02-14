@@ -3,15 +3,15 @@
 import useAuth from "@/hooks/auth";
 import { members } from "@wix/members";
 import {
-    Check,
+    //Check,
     LogInIcon,
     LogOutIcon,
-    Monitor,
-    Moon,
-    Sun,
+    // Monitor,
+    // Moon,
+    // Sun,
     UserIcon,
 } from "lucide-react";
-import { useTheme } from "next-themes";
+//import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import {
@@ -21,9 +21,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuPortal,
     DropdownMenuSeparator,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
+    // DropdownMenuSub,
+    // DropdownMenuSubContent,
+    // DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
@@ -38,17 +38,15 @@ export default function UserButton({
     }: UserButtonProps) {
     const { login, logout } = useAuth();
 
-    const { theme, setTheme } = useTheme();
-
-    // return <Button onClick={() => login()}>Login</Button>;
+    //const { theme, setTheme } = useTheme();
 
     return (
         <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-            <Button size="icon" variant="ghost" className={className}>
-            <UserIcon />
-            </Button>
-        </DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>
+                <Button size="icon" variant="ghost" className={className}>
+                    <UserIcon />
+                </Button>
+            </DropdownMenuTrigger>
         <DropdownMenuContent className="min-w-44 max-w-64">
             {loggedInMember && (
             <>
