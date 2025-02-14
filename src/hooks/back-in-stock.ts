@@ -5,25 +5,7 @@ import {
 } from "@/wix-api/backInStockNotifications";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "./use-toast";
-
-// Definizione del tipo per l'errore
-interface WixApiError {
-    details?: {
-        applicationError?: {
-            code?: string;
-        };
-    };
-}
-
-// Type Guard per verificare se l'errore è di tipo WixApiError
-function isWixApiError(error: unknown): error is WixApiError {
-    return (
-        typeof error === "object" &&
-        error !== null &&
-        "details" in error &&
-        typeof (error as WixApiError).details?.applicationError?.code === "string"
-    );
-}
+import { isWixApiError } from "@/lib/errors";
 
 export function useCreateBackInStockNotificationRequest() {
     const { toast } = useToast();

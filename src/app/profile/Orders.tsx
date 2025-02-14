@@ -23,36 +23,36 @@ export default function Orders() {
     const orders = data?.pages.flatMap((page) => page.orders) || [];
 
     return (
-        <div className="space-y-5">
-            <h2 className="text-2xl font-bold">Your orders</h2>
-            {status === "pending" && <OrdersLoadingSkeleton />}
-            {status === "error" && (
-                <p className="text-destructive">Error fetching orders</p>
-            )}
-            {status === "success" && !orders.length && !hasNextPage && (
-                <p>No orders yet</p>
-            )}
-            {/* {orders.map((order) => (
-                <Order key={order.number} order={order} />
-            ))} */}
-            {hasNextPage && (
-                <LoadingButton
-                loading={isFetchingNextPage}
-                onClick={() => fetchNextPage()}
-                >
-                Load more orders
-                </LoadingButton>
-            )}
-        </div>
+    <div className="space-y-5">
+        <h2 className="text-2xl font-bold">Your orders</h2>
+        {status === "pending" && <OrdersLoadingSkeleton />}
+        {status === "error" && (
+        <p className="text-destructive">Error fetching orders</p>
+        )}
+        {status === "success" && !orders.length && !hasNextPage && (
+        <p>No orders yet</p>
+        )}
+        {orders.map((order) => (
+        <Order key={order.number} order={order} />
+        ))}
+        {hasNextPage && (
+        <LoadingButton
+            loading={isFetchingNextPage}
+            onClick={() => fetchNextPage()}
+        >
+            Load more orders
+        </LoadingButton>
+        )}
+    </div>
     );
 }
 
 function OrdersLoadingSkeleton() {
     return (
-        <div className="space-y-5">
+    <div className="space-y-5">
         {Array.from({ length: 2 }).map((_, i) => (
-            <Skeleton key={i} className="h-64" />
+        <Skeleton key={i} className="h-64" />
         ))}
-        </div>
+    </div>
     );
 }

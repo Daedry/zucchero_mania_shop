@@ -2,17 +2,16 @@ import { WIX_STORES_APP_ID } from "@/lib/constants";
 import { findVariant } from "@/lib/utils";
 import { WixClient } from "@/lib/wix-client.base";
 import { products } from "@wix/stores";
+import { isWixApiError } from "@/lib/errors"; // ✅ Importa il Type Guard
 
 export async function getCart(wixClient: WixClient) {
     try {
         return await wixClient.currentCart.getCurrentCart();
     } catch (error) {
-        if (
-        (error as any).details.applicationError.code === "OWNED_CART_NOT_FOUND"
-        ) {
-        return null;
+        if (isWixApiError(error) && error.details && error.details.applicationError?.code === "OWNED_CART_NOT_FOUND") {
+            return null;
         } else {
-        throw error;
+            throw error;
         }
     }
 }
@@ -25,25 +24,22 @@ export interface AddToCartValues {
 
 export async function addToCart(
     wixClient: WixClient,
-    { 
-        product, selectedOptions, quantity 
-    }: AddToCartValues,) {
+    { product, selectedOptions, quantity }: AddToCartValues
+) {
     const selectedVariant = findVariant(product, selectedOptions);
 
     return wixClient.currentCart.addToCurrentCart({
         lineItems: [
-        {
-            catalogReference: {
-            appId: WIX_STORES_APP_ID,
-            catalogItemId: product._id,
-            options: selectedVariant
-                ? {
-                    variantId: selectedVariant._id,
-                }
-                : { options: selectedOptions },
+            {
+                catalogReference: {
+                    appId: WIX_STORES_APP_ID,
+                    catalogItemId: product._id,
+                    options: selectedVariant
+                        ? { variantId: selectedVariant._id }
+                        : { options: selectedOptions },
+                },
+                quantity,
             },
-            quantity,
-        },
         ],
     });
 }
@@ -55,12 +51,12 @@ export interface UpdateCartItemQuantityValues {
 
 export async function updateCartItemQuantity(
     wixClient: WixClient,
-    { productId, newQuantity }: UpdateCartItemQuantityValues,
+    { productId, newQuantity }: UpdateCartItemQuantityValues
 ) {
     return wixClient.currentCart.updateCurrentCartLineItemQuantity([
         {
-        _id: productId,
-        quantity: newQuantity,
+            _id: productId,
+            quantity: newQuantity,
         },
     ]);
 }
@@ -73,12 +69,10 @@ export async function clearCart(wixClient: WixClient) {
     try {
         return await wixClient.currentCart.deleteCurrentCart();
     } catch (error) {
-        if (
-        (error as any).details.applicationError.code === "OWNED_CART_NOT_FOUND"
-        ) {
-        return;
+        if (isWixApiError(error) && error.details && error.details.applicationError?.code === "OWNED_CART_NOT_FOUND") {
+            return;
         } else {
-        throw error;
+            throw error;
         }
     }
 }

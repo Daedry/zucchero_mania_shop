@@ -79,7 +79,7 @@ export default function MobileMenu({
                     </li>
                 ))}
                 </ul>
-                {/* <UserButton loggedInMember={loggedInMember} /> */}
+                <UserButton loggedInMember={loggedInMember} /> 
             </div>
             </SheetContent>
         </Sheet>

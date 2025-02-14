@@ -1,13 +1,14 @@
 import { WixClient } from "@/lib/wix-client.base";
+import { isWixApiError } from "@/lib/errors"; // ✅ Importa il Type Guard
 
 export async function getOrder(wixClient: WixClient, orderId: string) {
     try {
         return await wixClient.orders.getOrder(orderId);
     } catch (error) {
-        if ((error as any).details.applicationError.code === "NOT_FOUND") {
-        return null;
+        if (isWixApiError(error) && error.details && error.details.applicationError?.code === "NOT_FOUND") {
+            return null;
         } else {
-        throw error;
+            throw error;
         }
     }
 }
@@ -23,10 +24,10 @@ export async function getUserOrders(
 ) {
     return wixClient.orders.searchOrders({
         search: {
-        cursorPaging: {
-            limit,
-            cursor,
-        },
+            cursorPaging: {
+                limit,
+                cursor,
+            },
         },
     });
 }

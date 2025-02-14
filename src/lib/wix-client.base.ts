@@ -1,4 +1,4 @@
-import { createClient, OAuthStrategy, Token, Tokens } from "@wix/sdk";
+import { createClient, OAuthStrategy, Tokens } from "@wix/sdk";
 import { env } from "@/env";
 import {
     backInStockNotifications,

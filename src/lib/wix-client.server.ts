@@ -11,7 +11,9 @@ export const getWixServerClient = cache(() =>{
 
     try {
         tokens = JSON.parse(cookies().get(WIX_SESSION_COOKIE)?.value || "{}");
-    } catch (error) {}
+    } catch (error) {
+        console.error("Errore nel parsing dei cookie:", error);
+    }
 
     return getWixClient(tokens);
 });

@@ -1,10 +1,8 @@
 import { products } from "@wix/stores";
 import Link from "next/link";
-import { media as wixMedia } from "@wix/sdk";
 import WixImage from "./WixImage";
 import Badge from "./ui/badge";
 import { formatCurrency } from "@/lib/utils";
-import { get } from "http";
 import DiscountBadge from "./DiscountBadge";
 
 interface ProductProps {
@@ -14,10 +12,6 @@ interface ProductProps {
 export default function Product({product}: ProductProps) {
     
     const mainImage = product.media?.mainMedia?.image;
-
-    const resizedImageUrl = mainImage?.url
-        ? wixMedia.getScaledToFillImageUrl(mainImage.url, 700 , 700, {}) 
-        : null;
 
     return (
         <Link href={`/products/${product.slug}`}
@@ -39,13 +33,13 @@ export default function Product({product}: ProductProps) {
                     </Badge>
                 </div>
             </div>
-            <div className="space-7-3 p-3">
+            {/*<div className="space-7-3 p-3">
                 <div className="text-base font-semibold">{product.name}</div>
-                {/*<div 
+                <div 
                     className="line-clamp-5"
                     dangerouslySetInnerHTML={{__html: product.description || ""}}
-                />*/}
-            </div>
+                />
+            </div>*/}
         </Link>
     )
 }

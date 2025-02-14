@@ -4,17 +4,25 @@ import { notFound, redirect } from "next/navigation";
 
 interface PageProps {
     params: { id: string };
-    searchParams: any;
+    searchParams: Record<string, string | string[]>;
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
+    const searchParamsString = new URLSearchParams(
+      Object.entries(searchParams).flatMap(([key, value]) =>
+        Array.isArray(value)
+          ? value.map((v) => [key, v])
+          : [[key, value]]
+      )
+    ).toString();
+
     if (params.id === "someId") {
-    redirect(`/products/i-m-a-product-1?${new URLSearchParams(searchParams)}`);
+        redirect(`/products/i-m-a-product-1?${searchParamsString}`);
     }
 
     const product = await getProductById(getWixServerClient(), params.id);
 
     if (!product) notFound();
 
-    redirect(`/products/${product.slug}?${new URLSearchParams(searchParams)}`);
+    redirect(`/products/${product.slug}?${searchParamsString}`);
 }
