@@ -67,7 +67,7 @@ async function FeaturedProducts() {
 
   return (
     <div className="space-y-5">
-      <h2 className="text-2xl font-bold mt-10">Prodotti in Evidenza</h2>
+      <h2 className="text-2xl mt-10">Prodotti in Evidenza</h2>
       <div className="flex flex-col sm:grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
         {featuredProducts.items.map((product) => (
           <Product key={product._id} product={product}/>

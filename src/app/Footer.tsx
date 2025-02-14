@@ -183,7 +183,7 @@ export default function Footer() {
                         size="lg"
                         className="mt-3 inline-flex items-center justify-center rounded-md bg-primary px-6 py-4"
                     >
-                        Sottoscivi
+                        Sottoscriviti
                     </Button>
                     </form>
                 </div>

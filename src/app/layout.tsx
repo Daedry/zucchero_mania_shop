@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Lora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/app/Navbar";
 import Footer from "./Footer";
 import ReactQueryProvider from "./ReactQueryProvider";
 import { Toaster } from "@/components/ui/toaster";
-
-const lora = Lora({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -28,9 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/favicon.ico" />
-      <body
-        className={lora.className}
-      >
+      <body>
         <ReactQueryProvider>
           <ThemeProvider
             attribute="class"
