@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 import ClearCart from "./ClearCart";
 
 interface PageProps {
-    searchParams: Record<string, string | string[]>;
+    searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export const metadata: Metadata = {
@@ -16,10 +16,12 @@ export const metadata: Metadata = {
 };
 
 export default async function Page({ searchParams }: PageProps) {
-    // ✅ Assicuriamoci che `orderId` sia sempre una stringa
-    const orderId = Array.isArray(searchParams.orderId)
-        ? searchParams.orderId[0]
-        : searchParams.orderId;
+    // ✅ Estrarre `orderId` in modo sicuro
+    const orderId = searchParams.orderId 
+        ? Array.isArray(searchParams.orderId) 
+            ? searchParams.orderId[0] 
+            : searchParams.orderId 
+        : undefined;
 
     if (!orderId) {
         notFound(); // Se `orderId` è mancante, reindirizza a 404
