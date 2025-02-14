@@ -92,7 +92,7 @@ export default function ShoppingCartButton({
                     <div className="space-y-0.5">
                     <p className="text-sm">Importo totale:</p>
                     <p className="font-bold">
-                        {/* @ts-expect-error */}
+                        {/* @ts-expect-error Il tipo di subtotal potrebbe non essere definito in alcuni casi */}
                         {cartQuery.data?.subtotal?.formattedConvertedAmount}
                     </p>
                     <p className="text-xs text-muted-foreground">
