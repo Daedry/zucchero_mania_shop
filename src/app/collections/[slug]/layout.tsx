@@ -8,7 +8,9 @@ import { Suspense } from "react";
 
 interface LayoutProps {
     children: React.ReactNode;
-    params: { slug: string } | undefined | null | any;
+    params: {
+        slug?: string | null;
+    };
 }
 
 export default function Layout({ children, params }: LayoutProps) {
@@ -19,7 +21,8 @@ export default function Layout({ children, params }: LayoutProps) {
     );
 }
 
-    async function CollectionsLayout({ children, params: { slug } }: LayoutProps) {
+async function CollectionsLayout({ children, params: { slug } }: LayoutProps) {
+    if(!slug) notFound();
     const collection = await getCollectionBySlug(getWixServerClient(), slug);
 
     if (!collection) notFound();
