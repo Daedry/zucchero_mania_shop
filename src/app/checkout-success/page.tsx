@@ -8,23 +8,14 @@ import { notFound } from "next/navigation";
 import ClearCart from "./ClearCart";
 
 interface PageProps {
-    searchParams: Record<string, string | string[]>;
+    searchParams: { orderId: string };
 }
 
 export const metadata: Metadata = {
     title: "Checkout success",
 };
 
-export default async function Page({ searchParams }: PageProps) {
-    // ✅ Assicuriamoci che `orderId` sia sempre una stringa
-    const orderId = Array.isArray(searchParams.orderId)
-        ? searchParams.orderId[0]
-        : searchParams.orderId;
-
-    if (!orderId) {
-        notFound(); // Se `orderId` è mancante, reindirizza a 404
-    }
-
+export default async function Page({ searchParams: { orderId } }: PageProps) {
     const wixClient = getWixServerClient();
 
     const [order, loggedInMember] = await Promise.all([
