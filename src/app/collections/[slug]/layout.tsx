@@ -9,7 +9,7 @@ import { Suspense } from "react";
 interface LayoutProps {
     children: React.ReactNode;
     params: {
-        slug?: string | null;
+        slug?: string | null | undefined;
     };
 }
 
