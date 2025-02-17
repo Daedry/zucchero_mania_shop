@@ -51,11 +51,12 @@ export default async function Page({
 
     const { page } = await searchParams;
 
-    if (!page || page.length === 0){
-        notFound();
-    }
 
-    const pageNumber = "1";
+    let pageNumber = "1";
+
+    if (page){
+        pageNumber = page[0];
+    }
 
     const collection = await getCollectionBySlug(getWixServerClient(), slug[0]);
 

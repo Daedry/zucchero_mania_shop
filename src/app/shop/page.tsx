@@ -8,32 +8,32 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 interface PageProps {
-    searchParams: {
+    searchParams: Promise<{
         q?: string;
         page?: string;
         collection?: string[];
         price_min?: string;
         price_max?: string;
         sort?: string;
-    };
+    }>;
 }
 
-export function generateMetadata({ searchParams: { q } }: PageProps): Metadata {
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+
+    const { q } = await searchParams;
     return {
         title: q ? `Risultati per "${q}"` : "Prodotti",
     };
 }
 
 export default async function Page({
-    searchParams: {
-        q,
-        page = "1",
-        collection: collectionIds,
-        price_min,
-        price_max,
-        sort,
-    },
+    searchParams
 }: PageProps) {
+
+    const { q, page, collection, price_min, price_max, sort } = await searchParams;
+
+    const collectionIds = collection;
+
     const title = q ? `Risultati per "${q}"` : "Prodotti";
 
     return (
@@ -42,7 +42,7 @@ export default async function Page({
         <Suspense fallback={<LoadingSkeleton />} key={`${q}-${page}`}>
             <ProductResults
             q={q}
-            page={parseInt(page)}
+            page={parseInt(page || "1")}
             collectionIds={collectionIds}
             priceMin={price_min ? parseInt(price_min) : undefined}
             priceMax={price_max ? parseInt(price_max) : undefined}
