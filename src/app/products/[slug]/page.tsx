@@ -15,15 +15,21 @@ import ProductReviews, {
 } from "./ProductReviews";
 
 interface PageProps {
-    params: { slug: string };
+    params: Promise<{ slug: string[] }>;
 }
 
 import { use } from "react";
 
 export async function generateMetadata({
-    params: { slug },
+    params,
 }: PageProps): Promise<Metadata> {
-    const product = await getProductBySlug(getWixServerClient(), slug);
+    const { slug } = await params;
+    
+    if (!slug || slug.length === 0){
+        notFound();
+    }
+
+    const product = await getProductBySlug(getWixServerClient(), slug[0]);
 
     if (!product) notFound();
 
@@ -47,8 +53,14 @@ export async function generateMetadata({
     };
 }
 
-export default async function Page({ params: { slug } }: PageProps) {
-    const product = await getProductBySlug(getWixServerClient(), slug);
+export default async function Page({ params }: PageProps) {
+    const { slug } = await params;
+    
+    if (!slug || slug.length === 0){
+        notFound();
+    }
+    
+    const product = await getProductBySlug(getWixServerClient(), slug[0]);
 
     if (!product?._id) notFound();
 
