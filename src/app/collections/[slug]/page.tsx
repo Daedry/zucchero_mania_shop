@@ -10,7 +10,7 @@
 
 interface PageProps {
     params: Promise<{ slug: string[] }>;
-    searchParams: { page?: string };
+    searchParams: Promise<{ page?: string[] }>;
 }
 
 export async function generateMetadata({
@@ -40,14 +40,23 @@ export async function generateMetadata({
 
 export default async function Page({
     params,
-    searchParams: { page = "1" },
+    searchParams,
     }: PageProps) {
-        
+
     const { slug } = await params;
 
     if (!slug || slug.length === 0){
         notFound();
     }
+
+    const { page } = await searchParams;
+
+    if (!page || page.length === 0){
+        notFound();
+    }
+
+    const pageNumber = "1";
+
     const collection = await getCollectionBySlug(getWixServerClient(), slug[0]);
 
     if (!collection?._id) notFound();
@@ -55,8 +64,8 @@ export default async function Page({
     return (
         <div className="space-y-5">
         <h2 className="text-2xl font-bold">Products</h2>
-        <Suspense fallback={<LoadingSkeleton />} key={page}>
-            <Products collectionId={collection._id} page={parseInt(page)} />
+        <Suspense fallback={<LoadingSkeleton />} key={pageNumber}>
+            <Products collectionId={collection._id} page={parseInt(pageNumber)} />
         </Suspense>
         </div>
     );
