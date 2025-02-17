@@ -9,14 +9,21 @@
     import { Suspense } from "react";
 
 interface PageProps {
-    params: { slug: string };
+    params: Promise<{ slug: string[] }>;
     searchParams: { page?: string };
 }
 
 export async function generateMetadata({
-    params: { slug },
+    params,
     }: PageProps): Promise<Metadata> {
-    const collection = await getCollectionBySlug(getWixServerClient(), slug);
+
+    const { slug } = await params;
+
+    if (!slug || slug.length === 0){
+        notFound();
+    }
+
+    const collection = await getCollectionBySlug(getWixServerClient(), slug[0]);
 
     if (!collection) notFound();
 
@@ -32,10 +39,16 @@ export async function generateMetadata({
 }
 
 export default async function Page({
-    params: { slug },
+    params,
     searchParams: { page = "1" },
     }: PageProps) {
-    const collection = await getCollectionBySlug(getWixServerClient(), slug);
+        
+    const { slug } = await params;
+
+    if (!slug || slug.length === 0){
+        notFound();
+    }
+    const collection = await getCollectionBySlug(getWixServerClient(), slug[0]);
 
     if (!collection?._id) notFound();
 
