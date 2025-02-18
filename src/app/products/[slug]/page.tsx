@@ -130,12 +130,14 @@ async function ProductReviewsSection({ product }: ProductReviewsSectionProps) {
     const wixClient = await getWixServerClient();
     const loggedInMember = await getLoggedInMember(wixClient);
 
-    const existingReview = loggedInMember?.contactId
-        ? use(getProductReviews(wixClient, {
-            productId: product._id,
-            contactId: loggedInMember.contactId,
-        }))?.items[0]
-        : null;
+    const productReviews = loggedInMember?.contactId
+    ? await getProductReviews(wixClient, {
+        productId: product._id,
+        contactId: loggedInMember.contactId,
+        })
+    : null;
+    
+    const existingReview = productReviews?.items[0] ?? null;
 
     return (
         <div className="space-y-5">
