@@ -26,7 +26,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="default"
+            defaultTheme="light"
             enableSystem={true}
             disableTransitionOnChange
           >
