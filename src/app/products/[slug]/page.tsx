@@ -15,7 +15,7 @@ import ProductReviews, {
 } from "./ProductReviews";
 
 interface PageProps {
-    params: Promise<{ slug: string[] }>;
+    params: Promise<{ slug: string }>;
 }
 
 import { use } from "react";
@@ -23,15 +23,16 @@ import { use } from "react";
 export async function generateMetadata({
     params,
 }: PageProps): Promise<Metadata> {
+
     const { slug } = await params;
     
-    if (!slug || slug.length === 0){
+    if (!slug){
         notFound();
-    }
+    }    
 
     const wixClient = await getWixServerClient();
 
-    const product = await getProductBySlug(wixClient, slug[0]);
+    const product = await getProductBySlug(wixClient, slug);
 
     if (!product) notFound();
 
@@ -58,13 +59,11 @@ export async function generateMetadata({
 export default async function Page({ params }: PageProps) {
     const { slug } = await params;
     
-    if (!slug || slug.length === 0){
-        notFound();
-    }
+    console.log("SLUG: " + slug);
 
     const wixClient = await getWixServerClient();
     
-    const product = await getProductBySlug(wixClient, slug[0]);
+    const product = await getProductBySlug(wixClient, slug);
 
     if (!product?._id) notFound();
 
@@ -129,7 +128,7 @@ async function ProductReviewsSection({ product }: ProductReviewsSectionProps) {
     if (!product._id) return null;
 
     const wixClient = await getWixServerClient();
-    const loggedInMember = use(getLoggedInMember(wixClient));
+    const loggedInMember = await getLoggedInMember(wixClient);
 
     const existingReview = loggedInMember?.contactId
         ? use(getProductReviews(wixClient, {
