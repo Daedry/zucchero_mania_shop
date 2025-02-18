@@ -18,8 +18,6 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
-import { use } from "react";
-
 export async function generateMetadata({
     params,
 }: PageProps): Promise<Metadata> {
