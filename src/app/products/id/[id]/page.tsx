@@ -25,8 +25,8 @@ export default async function Page({ params, searchParams }: PageProps) {
     if (paramId[0] === "someId") {
         redirect(`/products/i-m-a-product-1?${searchParamsString}`);
     }
-
-    const product = await getProductById(getWixServerClient(), paramId[0]);
+    const wixClient = await getWixServerClient();
+    const product = await getProductById(wixClient, paramId[0]);
 
     if (!product) notFound();
 

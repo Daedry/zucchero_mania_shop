@@ -23,7 +23,9 @@ export async function generateMetadata({
         notFound();
     }
 
-    const collection = await getCollectionBySlug(getWixServerClient(), slug[0]);
+    const wixClient = await getWixServerClient();
+
+    const collection = await getCollectionBySlug(wixClient, slug[0]);
 
     if (!collection) notFound();
 
@@ -58,7 +60,9 @@ export default async function Page({
         pageNumber = page[0];
     }
 
-    const collection = await getCollectionBySlug(getWixServerClient(), slug[0]);
+    const wixClient = await getWixServerClient();
+
+    const collection = await getCollectionBySlug(wixClient, slug[0]);
 
     if (!collection?._id) notFound();
 
@@ -80,7 +84,9 @@ interface ProductsProps {
 async function Products({ collectionId, page }: ProductsProps) {
     const pageSize = 8;
 
-    const collectionProducts = await queryProducts(getWixServerClient(), {
+    const wixClient = await getWixServerClient();
+
+    const collectionProducts = await queryProducts(wixClient, {
         collectionIds: collectionId,
         limit: pageSize,
         skip: (page - 1) * pageSize,

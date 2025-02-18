@@ -29,7 +29,7 @@ export default async function Page({ searchParams }: PageProps) {
   // Per esempio, prendiamo il primo valore:
     const orderIdValue = orderId[0];
 
-    const wixClient = getWixServerClient();
+    const wixClient = await getWixServerClient();
 
     const [order, loggedInMember] = await Promise.all([
     getOrder(wixClient, orderIdValue),

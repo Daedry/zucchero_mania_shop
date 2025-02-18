@@ -6,11 +6,11 @@ import { cache } from "react";
 import { WIX_SESSION_COOKIE } from "./constants";
 import { getWixClient } from "./wix-client.base";
 
-export const getWixServerClient = cache(() =>{
+export const getWixServerClient = cache(async () =>{
     let tokens: Tokens | undefined;
 
     try {
-        tokens = JSON.parse(cookies().get(WIX_SESSION_COOKIE)?.value || "{}");
+        tokens = JSON.parse((await cookies()).get(WIX_SESSION_COOKIE)?.value || "{}");
     } catch (error) {
         console.error("Errore nel parsing dei cookie:", error);
     }

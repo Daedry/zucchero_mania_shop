@@ -29,7 +29,9 @@ export async function generateMetadata({
         notFound();
     }
 
-    const product = await getProductBySlug(getWixServerClient(), slug[0]);
+    const wixClient = await getWixServerClient();
+
+    const product = await getProductBySlug(wixClient, slug[0]);
 
     if (!product) notFound();
 
@@ -59,8 +61,10 @@ export default async function Page({ params }: PageProps) {
     if (!slug || slug.length === 0){
         notFound();
     }
+
+    const wixClient = await getWixServerClient();
     
-    const product = await getProductBySlug(getWixServerClient(), slug[0]);
+    const product = await getProductBySlug(wixClient, slug[0]);
 
     if (!product?._id) notFound();
 
@@ -87,8 +91,9 @@ interface RelatedProductsProps {
 }
 
 async function RelatedProducts({ productId }: RelatedProductsProps) {
+    const wixClient = await getWixServerClient();
     const relatedProducts = await getRelatedProducts(
-        getWixServerClient(),
+        wixClient,
         productId,
     );
 
@@ -120,10 +125,10 @@ interface ProductReviewsSectionProps {
     product: products.Product;
 }
 
-function ProductReviewsSection({ product }: ProductReviewsSectionProps) {
+async function ProductReviewsSection({ product }: ProductReviewsSectionProps) {
     if (!product._id) return null;
 
-    const wixClient = getWixServerClient();
+    const wixClient = await getWixServerClient();
     const loggedInMember = use(getLoggedInMember(wixClient));
 
     const existingReview = loggedInMember?.contactId

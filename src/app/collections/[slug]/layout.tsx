@@ -27,7 +27,9 @@ async function CollectionsLayout({ children, params}: LayoutProps) {
         notFound();
     }
 
-    const collection = await getCollectionBySlug(getWixServerClient(), slug[0]);
+    const wixClient = await getWixServerClient();
+
+    const collection = await getCollectionBySlug(wixClient, slug[0]);
 
     if (!collection) notFound();
 
