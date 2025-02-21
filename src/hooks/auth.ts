@@ -1,6 +1,6 @@
     import { WIX_OAUTH_DATA_COOKIE, WIX_SESSION_COOKIE } from "@/lib/constants";
     import { wixBrowserClient } from "@/lib/wix-client.browser";
-    import { generateOAuthData, getLoginUrl, getLogoutUrl } from "@/wix-api/auth";
+    import { generateOAuthData, getLoginUrl } from "@/wix-api/auth"; // getLogoutUrl
     import Cookies from "js-cookie";
     import { usePathname } from "next/navigation";
     import { useToast } from "./use-toast";
