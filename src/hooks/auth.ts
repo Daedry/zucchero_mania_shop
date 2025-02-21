@@ -4,7 +4,6 @@
     import Cookies from "js-cookie";
     import { usePathname } from "next/navigation";
     import { useToast } from "./use-toast";
-import { delay } from "@/lib/utils";
 
 export default function useAuth() {
     const pathname = usePathname();
