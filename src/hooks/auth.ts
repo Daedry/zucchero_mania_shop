@@ -4,6 +4,7 @@
     import Cookies from "js-cookie";
     import { usePathname } from "next/navigation";
     import { useToast } from "./use-toast";
+import { delay } from "@/lib/utils";
 
 export default function useAuth() {
     const pathname = usePathname();
@@ -39,6 +40,10 @@ export default function useAuth() {
         Cookies.remove(WIX_SESSION_COOKIE);
 
         window.location.href = logoutUrl;
+
+        toast({
+            description: "Logout effettuato con successo.",
+        });
         } catch (error) {
         console.error(error);
         toast({
