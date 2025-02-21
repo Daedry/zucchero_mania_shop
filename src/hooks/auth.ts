@@ -33,7 +33,8 @@ export default function useAuth() {
 
     async function logout() {
         try {
-        const logoutUrl = await getLogoutUrl(wixBrowserClient);
+        // const logoutUrl = await getLogoutUrl(wixBrowserClient);
+        const logoutUrl = "https://www.zuccheromania.com";
 
         Cookies.remove(WIX_SESSION_COOKIE);
 
