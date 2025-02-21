@@ -51,15 +51,15 @@ export default function UserButton({
             {loggedInMember && (
             <>
                 <DropdownMenuLabel>
-                Autenticato come{" "}
-                {loggedInMember.contact?.firstName || loggedInMember.loginEmail}
+                    Autenticato come{" "}
+                    {loggedInMember.contact?.firstName || loggedInMember.loginEmail}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <Link href="/profile">
-                <DropdownMenuItem>
-                    <UserIcon className="mr-2 size-4" />
-                    Profilo
-                </DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <UserIcon className="mr-2 size-4" />
+                        Profilo
+                    </DropdownMenuItem>
                 </Link>
                 <DropdownMenuSeparator />
             </>
@@ -89,7 +89,6 @@ export default function UserButton({
                     </DropdownMenuSubContent>
                 </DropdownMenuPortal>
             </DropdownMenuSub> */}
-            <DropdownMenuSeparator />
             {loggedInMember ? (
             <DropdownMenuItem onClick={() => logout()}>
                 <LogOutIcon className="mr-2 size-4" />

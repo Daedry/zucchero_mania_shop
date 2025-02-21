@@ -18,10 +18,6 @@ export default async function Page({ params, searchParams }: PageProps) {
 
     const { paramId } = await params;
 
-    if (!paramId || paramId.length === 0) {
-        notFound();
-    }
-
     if (paramId[0] === "someId") {
         redirect(`/products/i-m-a-product-1?${searchParamsString}`);
     }
