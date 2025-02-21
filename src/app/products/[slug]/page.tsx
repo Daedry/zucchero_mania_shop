@@ -13,6 +13,7 @@ import ProductDetails from "./ProductDetails";
 import ProductReviews, {
     ProductReviewsLoadingSkeleton,
 } from "./ProductReviews";
+import { delay } from "@/lib/utils";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -56,8 +57,6 @@ export async function generateMetadata({
 
 export default async function Page({ params }: PageProps) {
     const { slug } = await params;
-    
-    console.log("SLUG: " + slug);
 
     const wixClient = await getWixServerClient();
     
@@ -65,6 +64,7 @@ export default async function Page({ params }: PageProps) {
 
     if (!product?._id) notFound();
 
+    await delay(500);
     return (
         <main className="mx-auto max-w-7xl space-y-10 px-5 py-10">
             <ProductDetails product={product} />
