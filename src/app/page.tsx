@@ -4,7 +4,6 @@ import banner from "@/assets/banner.jpg";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { delay } from "@/lib/utils";
 import { Suspense } from "react";
 import Product from "@/components/Product";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -46,7 +45,6 @@ export default function Home() {
 }
 
 async function FeaturedProducts() {
-  await delay(500);
 
   const wixClient = await getWixServerClient();
 
