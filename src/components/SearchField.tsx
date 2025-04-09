@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { SearchIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { Input } from "./ui/input";
 
 interface SearchFieldProps {
@@ -10,7 +10,7 @@ interface SearchFieldProps {
 }
 
 export default function SearchField({ className }: SearchFieldProps) {
-    const router = useRouter();
+    // const router = useRouter();
 
     // function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     //     e.preventDefault();
