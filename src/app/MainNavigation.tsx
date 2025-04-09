@@ -14,7 +14,7 @@ import { collections } from "@wix/stores";
 import Link from "next/link";
 
 interface MainNavigationProps {
-    collections: collections.Collection[];
+    collections: collections.Collection[] | string[];
     className?: string;
 }
 
@@ -33,7 +33,8 @@ export default function MainNavigation({
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/shop" legacyBehavior passHref>
+                    {/* da ripristinare /shop */}
+                    <Link href="/" legacyBehavior passHref>  
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <span className="text-base">Shop</span>
                         </NavigationMenuLink>
@@ -43,9 +44,10 @@ export default function MainNavigation({
                     <NavigationMenuTrigger>
                         <span className="text-base">Categorie</span>
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent>
+                    {/* <NavigationMenuContent>
                         <ul className="p-4">
                         {collections.map((collection) => (
+                            allowedCategories.includes(collection.slug) &&
                             <li key={collection._id}>
                             <Link
                                 href={`/collections/${collection.slug}`}
@@ -62,9 +64,10 @@ export default function MainNavigation({
                                 </NavigationMenuLink>
                             </Link>
                             </li>
+                        
                         ))}
                         </ul>
-                    </NavigationMenuContent>
+                    </NavigationMenuContent> */}
                 </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu>

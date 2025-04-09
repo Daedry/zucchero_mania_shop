@@ -36,6 +36,17 @@ export default function ShoppingCartButton({
         0,
         ) || 0;
 
+    return  <>
+    <div className="relative">
+            <Button variant="ghost" size="icon" onClick={() => setSheetOpen(true)}>
+            <ShoppingCartIcon />
+            <span className="absolute right-0 top-0 flex size-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
+                {totalQuantity < 10 ? totalQuantity : "9+"}
+            </span>
+            </Button>
+        </div>
+    </>;
+
     return (
         <>
         <div className="relative">

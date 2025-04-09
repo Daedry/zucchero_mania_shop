@@ -1,6 +1,7 @@
 /* eslint-disabled @next/next/no-img-element */
 import Image from "next/image";
 import banner from "@/assets/banner.jpg";
+import coming from "@/assets/coming-soon.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -64,12 +65,27 @@ async function FeaturedProducts() {
   }
 
   return (
+    <div className=" h-full w-full mt-5">
+          <Image 
+              src={coming} 
+              alt="coming-soon" 
+              width={1500}
+              height={1500}
+              className="h-full object-cover border-radius rounded-lg"
+              
+            />
+        </div>
+  )
+
+  return (
     <div className="space-y-5">
-      <h2 className="text-2xl mt-10">Prodotti in Evidenza</h2>
+      {/* <h2 className="text-2xl mt-10">Prodotti in Evidenza</h2> */}
       <div className="flex flex-col sm:grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-        {featuredProducts.items.map((product) => (
+        {/* {featuredProducts.items.map((product) => (
           <Product key={product._id} product={product}/>
-        ))}
+        ))} */}
+        
+        
       </div>
     </div>
   );

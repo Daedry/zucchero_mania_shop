@@ -40,6 +40,12 @@ export default function UserButton({
 
     //const { theme, setTheme } = useTheme();
 
+    return <>
+    <Button size="icon" variant="ghost" className={className}>
+                    <UserIcon />
+                </Button>
+                </>
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>

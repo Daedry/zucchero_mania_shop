@@ -22,9 +22,9 @@ export default function SearchField({ className }: SearchFieldProps) {
 
     return (
         <form
-        onSubmit={handleSubmit}
-        method="GET"
-        action="/shop"
+        // onSubmit={handleSubmit}
+        // method="GET"
+        // action="/shop"
         className={cn("grow", className)}
         >
         <div className="relative">
