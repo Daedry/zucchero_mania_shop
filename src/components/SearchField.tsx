@@ -12,13 +12,13 @@ interface SearchFieldProps {
 export default function SearchField({ className }: SearchFieldProps) {
     const router = useRouter();
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        const form = e.currentTarget;
-        const q = (form.q as HTMLInputElement).value.trim();
-        if (!q) return;
-        router.push(`/shop?q=${encodeURIComponent(q)}`);
-    }
+    // function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    //     e.preventDefault();
+    //     const form = e.currentTarget;
+    //     const q = (form.q as HTMLInputElement).value.trim();
+    //     if (!q) return;
+    //     router.push(`/shop?q=${encodeURIComponent(q)}`);
+    // }
 
     return (
         <form

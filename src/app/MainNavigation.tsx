@@ -2,14 +2,14 @@
 
 import {
     NavigationMenu,
-    NavigationMenuContent,
+    // NavigationMenuContent,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 import { collections } from "@wix/stores";
 import Link from "next/link";
 
@@ -19,7 +19,7 @@ interface MainNavigationProps {
 }
 
 export default function MainNavigation({
-    collections,
+    // collections,
     className,
 }: MainNavigationProps) {
     return (
