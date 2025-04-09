@@ -22,13 +22,13 @@ import {
 import Link from "next/link";
 // import { useState } from "react";
 
-interface ShoppingCartButtonProps {
-    initialData: currentCart.Cart | null;
-}
+// interface ShoppingCartButtonProps {
+//     initialData: currentCart.Cart | null;
+// }
 
-export default function ShoppingCartButton({
-    initialData,
-    }: ShoppingCartButtonProps) {
+export default function ShoppingCartButton() {
+    // initialData,
+    // }: ShoppingCartButtonProps) {
     // const [sheetOpen, setSheetOpen] = useState(false);
 
     // const cartQuery = useCart(initialData);
@@ -124,102 +124,102 @@ export default function ShoppingCartButton({
     // );
     }
 
-interface ShoppingCartItemProps {
-    item: currentCart.LineItem;
-    onProductLinkClicked: () => void;
-}
+// interface ShoppingCartItemProps {
+//     item: currentCart.LineItem;
+//     onProductLinkClicked: () => void;
+// }
 
-function ShoppingCartItem({
-    item,
-    onProductLinkClicked,
-}: ShoppingCartItemProps) {
-    const updateQuantityMutation = useUpdateCartItemQuantity();
+// function ShoppingCartItem({
+//     item,
+//     onProductLinkClicked,
+// }: ShoppingCartItemProps) {
+//     const updateQuantityMutation = useUpdateCartItemQuantity();
 
-    const removeItemMutation = useRemoveCartItem();
+//     const removeItemMutation = useRemoveCartItem();
 
-    const productId = item._id;
+//     const productId = item._id;
 
-    if (!productId) return null;
+//     if (!productId) return null;
 
-    const slug = item.url?.split("/").pop();
+//     const slug = item.url?.split("/").pop();
 
-    const quantityLimitReached =
-        !!item.quantity &&
-        !!item.availability?.quantityAvailable &&
-        item.quantity >= item.availability.quantityAvailable;
+//     const quantityLimitReached =
+//         !!item.quantity &&
+//         !!item.availability?.quantityAvailable &&
+//         item.quantity >= item.availability.quantityAvailable;
 
-    return (
-        <li className="flex items-center gap-3">
-            <div className="relative size-fit flex-none">
-                <Link href={`/products/${slug}`} onClick={onProductLinkClicked}>
-                <WixImage
-                    mediaIdentifier={item.image}
-                    width={110}
-                    height={110}
-                    alt={item.productName?.translated || "Product image"}
-                    className="flex-none bg-secondary"
-                />
-                </Link>
-                <button
-                    className="absolute -right-1 -top-1 rounded-full border bg-background p-0.5"
-                    onClick={() => removeItemMutation.mutate(productId)}
-                >
-                <X className="size-3" />
-                </button>
-            </div>
-            <div className="space-y-1.5 text-sm">
-                <Link href={`/products/${slug}`} onClick={onProductLinkClicked}>
-                <p className="font-bold">{item.productName?.translated || "Item"}</p>
-                </Link>
-                {!!item.descriptionLines?.length && (
-                <p>
-                    {item.descriptionLines
-                    .map(
-                        (line) =>
-                        line.colorInfo?.translated || line.plainText?.translated,
-                    )
-                    .join(", ")}
-                </p>
-                )}
-                <div className="flex items-center gap-2">
-                    {item.quantity} x {item.price?.formattedConvertedAmount}
-                    {item.fullPrice && item.fullPrice.amount !== item.price?.amount && (
-                        <span className="text-muted-foreground line-through">
-                            {item.fullPrice.formattedConvertedAmount}
-                        </span>
-                    )}
-                </div>
-                <div className="flex items-center gap-1.5">
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        disabled={item.quantity === 1}
-                        onClick={() =>
-                        updateQuantityMutation.mutate({
-                            productId,
-                            newQuantity: !item.quantity ? 0 : item.quantity - 1,
-                        })
-                        }
-                    >
-                    -
-                </Button>
-                <span>{item.quantity}</span>
-                <Button
-                    variant="outline"
-                    size="sm"
-                    disabled={quantityLimitReached}
-                    onClick={() =>
-                    updateQuantityMutation.mutate({
-                        productId,
-                        newQuantity: !item.quantity ? 1 : item.quantity + 1,
-                    })
-                    }
-                >
-                    +
-                </Button>
-                {quantityLimitReached && <span>Quantity limit reached</span>}
-                </div>
-            </div>
-        </li>
-    );
-}
+//     return (
+//         <li className="flex items-center gap-3">
+//             <div className="relative size-fit flex-none">
+//                 <Link href={`/products/${slug}`} onClick={onProductLinkClicked}>
+//                 <WixImage
+//                     mediaIdentifier={item.image}
+//                     width={110}
+//                     height={110}
+//                     alt={item.productName?.translated || "Product image"}
+//                     className="flex-none bg-secondary"
+//                 />
+//                 </Link>
+//                 <button
+//                     className="absolute -right-1 -top-1 rounded-full border bg-background p-0.5"
+//                     onClick={() => removeItemMutation.mutate(productId)}
+//                 >
+//                 <X className="size-3" />
+//                 </button>
+//             </div>
+//             <div className="space-y-1.5 text-sm">
+//                 <Link href={`/products/${slug}`} onClick={onProductLinkClicked}>
+//                 <p className="font-bold">{item.productName?.translated || "Item"}</p>
+//                 </Link>
+//                 {!!item.descriptionLines?.length && (
+//                 <p>
+//                     {item.descriptionLines
+//                     .map(
+//                         (line) =>
+//                         line.colorInfo?.translated || line.plainText?.translated,
+//                     )
+//                     .join(", ")}
+//                 </p>
+//                 )}
+//                 <div className="flex items-center gap-2">
+//                     {item.quantity} x {item.price?.formattedConvertedAmount}
+//                     {item.fullPrice && item.fullPrice.amount !== item.price?.amount && (
+//                         <span className="text-muted-foreground line-through">
+//                             {item.fullPrice.formattedConvertedAmount}
+//                         </span>
+//                     )}
+//                 </div>
+//                 <div className="flex items-center gap-1.5">
+//                     <Button
+//                         variant="outline"
+//                         size="sm"
+//                         disabled={item.quantity === 1}
+//                         onClick={() =>
+//                         updateQuantityMutation.mutate({
+//                             productId,
+//                             newQuantity: !item.quantity ? 0 : item.quantity - 1,
+//                         })
+//                         }
+//                     >
+//                     -
+//                 </Button>
+//                 <span>{item.quantity}</span>
+//                 <Button
+//                     variant="outline"
+//                     size="sm"
+//                     disabled={quantityLimitReached}
+//                     onClick={() =>
+//                     updateQuantityMutation.mutate({
+//                         productId,
+//                         newQuantity: !item.quantity ? 1 : item.quantity + 1,
+//                     })
+//                     }
+//                 >
+//                     +
+//                 </Button>
+//                 {quantityLimitReached && <span>Quantity limit reached</span>}
+//                 </div>
+//             </div>
+//         </li>
+//     );
+// }
