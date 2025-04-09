@@ -8,18 +8,19 @@ import { Button } from "@/components/ui/button";
 //     SheetHeader,
 //     SheetTitle,
 // } from "@/components/ui/sheet";
-import WixImage from "@/components/WixImage";
+// import WixImage from "@/components/WixImage";
 import {
 // useCart,
 // useRemoveCartItem,
 // useUpdateCartItemQuantity,
 } from "@/hooks/cart";
-import { currentCart } from "@wix/ecom";
+// import { currentCart } from "@wix/ecom";
 import { 
     // Loader2, 
     ShoppingCartIcon, 
-    X } from "lucide-react";
-import Link from "next/link";
+    // X 
+} from "lucide-react";
+// import Link from "next/link";
 // import { useState } from "react";
 
 // interface ShoppingCartButtonProps {
@@ -39,16 +40,17 @@ export default function ShoppingCartButton() {
     //     0,
     //     ) || 0;
 
-    return  <>
-    <div className="relative">
-            <Button variant="ghost" size="icon" onClick={() => {}}>
-            <ShoppingCartIcon />
-            <span className="absolute right-0 top-0 flex size-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
-                {"0"}
-            </span>
-            </Button>
-        </div>
-    </>;
+    return  (
+        <div className="relative">
+        <Button variant="ghost" size="icon" onClick={() => {}}>
+        <ShoppingCartIcon />
+        <span className="absolute right-0 top-0 flex size-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
+            {"0"}
+        </span>
+        </Button>
+    </div>
+    );
+    
 
     // return (
     //     <>
@@ -121,7 +123,7 @@ export default function ShoppingCartButton() {
     //         </SheetContent>
     //     </Sheet>
     //     </>
-    // );
+     );
     }
 
 // interface ShoppingCartItemProps {
