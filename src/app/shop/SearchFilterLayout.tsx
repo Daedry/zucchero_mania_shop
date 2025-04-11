@@ -14,9 +14,16 @@ import { ProductsSort } from "@/wix-api/products";
 import { collections } from "@wix/stores";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useOptimistic, useState, useTransition } from "react";
+// import {
+//     Collapsible,
+//     CollapsibleContent,
+//     CollapsibleTrigger,
+// } from "@/components/ui/collapsible"
+// import Categorie from "@/assets/Categorie";
+
 
 interface SearchFilterLayoutProps {
-    collections: collections.Collection[];
+    collections: collections.Collection[] | string[];
     children: React.ReactNode;
 }
 
@@ -26,6 +33,18 @@ export default function SearchFilterLayout({
     }: SearchFilterLayoutProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
+
+    // const allowedCategories = [
+    //     "basi-e-supporti",
+    //     "strumenti-per-cake-design",
+    //     "coloranti-e-spray",
+    //     "decorazioni-commestibili",
+    //     "stampi-e-tortiere",
+    //     "accessori-per-feste",
+    //     "ingredienti",
+    //     "attrezzature-professionali", 
+    // ];
+
 
     const [optimisticFilters, setOptimisticFilters] = useOptimistic({
         collection: searchParams.getAll("collection"),
@@ -98,12 +117,14 @@ export default function SearchFilterLayout({
 interface CollectionsFilterProps {
     collections: collections.Collection[];
     selectedCollectionIds: string[];
+    //categoriaPadre: string;
     updateCollectionIds: (collectionIds: string[]) => void;
 }
 
 function CollectionsFilter({
     collections,
     selectedCollectionIds,
+    //categoriaPadre,
     updateCollectionIds,
     }: CollectionsFilterProps) {
     return (

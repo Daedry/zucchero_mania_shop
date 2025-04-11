@@ -10,18 +10,41 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 // import { cn } from "@/lib/utils";
-import { collections } from "@wix/stores";
+// import { collections } from "@wix/stores";
 import Link from "next/link";
 
 interface MainNavigationProps {
-    collections: collections.Collection[] | string[];
+    //collections: collections.Collection[] | string[];
     className?: string;
 }
 
 export default function MainNavigation({
-    // collections,
+    //collections,
     className,
 }: MainNavigationProps) {
+
+    // const allowedCategories = [
+    //     "basi-e-supporti",
+    //     "strumenti-per-cake-design",
+    //     "coloranti-e-spray",
+    //     "decorazioni-commestibili",
+    //     "stampi-e-tortiere",
+    //     "accessori-per-feste",
+    //     "ingredienti",
+    //     "attrezzature-professionali", 
+    // ];
+
+    // const basiEsupporti = [
+        
+    // ]
+
+    // const filteredCollections = collections.filter((collection) =>
+    //     allowedCategories.includes(collection.slug)
+    // );
+    
+    //console.log(collections);
+    // console.log('filteredCollections', filteredCollections); 
+
     return (
         <NavigationMenu className={className}>
             <NavigationMenuList>
