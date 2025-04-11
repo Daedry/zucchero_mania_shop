@@ -16,7 +16,7 @@ import ShoppingCartButton from "./ShoppingCartButton";
 export default async function Navbar() {
     const wixClient = await getWixServerClient();
 
-    const [cart, loggedInMember, collections] = await Promise.all([
+    const [ loggedInMember, collections] = await Promise.all([
         getCart(wixClient),
         getLoggedInMember(wixClient),
         getCollections(wixClient),
