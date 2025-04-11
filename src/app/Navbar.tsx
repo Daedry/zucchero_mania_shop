@@ -10,13 +10,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import MainNavigation from "./MainNavigation";
-import MobileMenu from "./MobileMenu";
+// import MobileMenu from "./MobileMenu";
 import ShoppingCartButton from "./ShoppingCartButton";
 
 export default async function Navbar() {
     const wixClient = await getWixServerClient();
 
-    const [ loggedInMember, collections] = await Promise.all([
+    const [ loggedInMember, 
+        //collections
+    ] = await Promise.all([
         getCart(wixClient),
         getLoggedInMember(wixClient),
         getCollections(wixClient),
@@ -26,10 +28,10 @@ export default async function Navbar() {
         <header className="bg-background shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 p-5">
             <Suspense>
-                <MobileMenu
-                    collections={collections}
+                {/* <MobileMenu
+                    // collections={collections}
                     loggedInMember={loggedInMember}
-                />
+                /> */}
             </Suspense>
             <div className="flex flex-wrap items-center gap-5">
             <Link href="/" className="flex items-center gap-4">
