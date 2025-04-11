@@ -37,7 +37,7 @@ export default async function Navbar() {
                 {/* <span className="text-xl font-bold">Flow Shop</span> */}
             </Link>
             <MainNavigation
-                collections={collections}
+                //collections={collections}
                 className="hidden lg:flex"
             />
             </div>
@@ -47,7 +47,7 @@ export default async function Navbar() {
                     loggedInMember={loggedInMember}
                     className="lg:inline-flex"
                 />
-                <ShoppingCartButton initialData={cart} />
+                <ShoppingCartButton />
             </div>
         </div>
         </header>
