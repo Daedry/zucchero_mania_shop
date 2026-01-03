@@ -5,6 +5,8 @@ import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
+    const cookieStore = await cookies(); // ✅ UNA VOLTA SOLA
+
     const code = req.nextUrl.searchParams.get("code");
     const state = req.nextUrl.searchParams.get("state");
     const error = req.nextUrl.searchParams.get("error");
@@ -14,8 +16,8 @@ export async function GET(req: NextRequest) {
         return new Response(error_description, { status: 400 });
     }
 
-    const oAuthData: OauthData = JSON.parse( // La proprietà 'get' non esiste nel tipo Promise<ReadonlyRequestCookies>;
-        (await cookies()).get(WIX_OAUTH_DATA_COOKIE)?.value || "{}",
+    const oAuthData: OauthData = JSON.parse(
+        cookieStore.get(WIX_OAUTH_DATA_COOKIE)?.value ?? "{}"
     );
 
     if (!code || !state || !oAuthData) {
@@ -30,16 +32,18 @@ export async function GET(req: NextRequest) {
         oAuthData,
     );
 
-    (await cookies()).delete(WIX_OAUTH_DATA_COOKIE);
-    (await cookies()).set(WIX_SESSION_COOKIE, JSON.stringify(memberTokens), {
+    cookieStore.delete(WIX_OAUTH_DATA_COOKIE);
+    cookieStore.set(WIX_SESSION_COOKIE, JSON.stringify(memberTokens), {
         maxAge: 60 * 60 * 24 * 14,
         secure: process.env.NODE_ENV === "production",
+        path: "/",
+        sameSite: "lax",
     });
 
     return new Response(null, {
         status: 302,
         headers: {
-        Location: oAuthData.originalUri || "/",
+            Location: oAuthData.originalUri || "/",
         },
     });
 }

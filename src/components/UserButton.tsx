@@ -3,7 +3,7 @@
 import useAuth from "@/hooks/auth";
 import { members } from "@wix/members";
 import {
-    //Check,
+    // Check,
     LogInIcon,
     LogOutIcon,
     // Monitor,
@@ -11,7 +11,7 @@ import {
     // Sun,
     UserIcon,
 } from "lucide-react";
-//import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import {
@@ -19,7 +19,7 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuLabel,
-    //DropdownMenuPortal,
+    // DropdownMenuPortal,
     DropdownMenuSeparator,
     // DropdownMenuSub,
     // DropdownMenuSubContent,
@@ -38,13 +38,13 @@ export default function UserButton({
     }: UserButtonProps) {
     const { login, logout } = useAuth();
 
-    //const { theme, setTheme } = useTheme();
+    // const { theme, setTheme } = useTheme();
 
-    return <>
-    <Button size="icon" variant="ghost" className={className}>
-                    <UserIcon />
-                </Button>
-                </>
+    // return <>
+    // <Button size="icon" variant="ghost" className={className}>
+    //                 <UserIcon />
+    //             </Button>
+    // </>
 
     return (
         <DropdownMenu>

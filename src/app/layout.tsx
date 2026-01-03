@@ -7,6 +7,9 @@ import ReactQueryProvider from "./ReactQueryProvider";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.zuccheromania.com"
+  ),
   title: {
     template: "%s - Zucchero Mania Shop",
     absolute: "Zucchero Mania Shop"

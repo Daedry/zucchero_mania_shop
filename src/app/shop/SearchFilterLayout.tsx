@@ -23,7 +23,7 @@ import { useEffect, useOptimistic, useState, useTransition } from "react";
 
 
 interface SearchFilterLayoutProps {
-    collections: collections.Collection[] | string[];
+    collections: collections.Collection[];
     children: React.ReactNode;
 }
 
@@ -84,21 +84,21 @@ export default function SearchFilterLayout({
             data-pending={isPending ? "" : undefined}
         >
             <CollectionsFilter
-            collections={collections}
-            selectedCollectionIds={optimisticFilters.collection}
-            updateCollectionIds={(collectionIds) =>
-                updateFilters({ collection: collectionIds })
-            }
+                collections={collections}
+                selectedCollectionIds={optimisticFilters.collection}
+                updateCollectionIds={(collectionIds) =>
+                    updateFilters({ collection: collectionIds })
+                }
             />
             <PriceFilter
-            minDefaultInput={optimisticFilters.price_min}
-            maxDefaultInput={optimisticFilters.price_max}
-            updatePriceRange={(priceMin, priceMax) =>
-                updateFilters({
-                price_min: priceMin,
-                price_max: priceMax,
-                })
-            }
+                minDefaultInput={optimisticFilters.price_min}
+                maxDefaultInput={optimisticFilters.price_max}
+                updatePriceRange={(priceMin, priceMax) =>
+                    updateFilters({
+                    price_min: priceMin,
+                    price_max: priceMax,
+                    })
+                }
             />
         </aside>
         <div className="w-full max-w-7xl space-y-5">
