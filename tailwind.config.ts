@@ -12,6 +12,10 @@ const config: Config = {
 			colors: {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				teal: {
+					DEFAULT: 'hsl(var(--teal) / <alpha-value>)',
+					foreground: 'hsl(var(--teal-foreground) / <alpha-value>)',
+				},
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
@@ -21,8 +25,8 @@ const config: Config = {
 					foreground: 'hsl(var(--popover-foreground))'
 				},
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
+					foreground: 'hsl(var(--primary-foreground) / <alpha-value>)',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
