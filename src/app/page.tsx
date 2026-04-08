@@ -4,7 +4,7 @@ import banner from "@/assets/banner.jpg";
 import aboutImg from "@/assets/about.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, ShoppingBag, Sparkles, CakeSlice, Phone, Paintbrush, Scissors, Package, Star, Cookie } from "lucide-react";
+import { ArrowRight, ShoppingBag, Sparkles, CakeSlice, Phone, Paintbrush, Scissors, Package, Cookie } from "lucide-react";
 import { Suspense } from "react";
 import Product from "@/components/Product";
 import { Skeleton } from "@/components/ui/skeleton";
